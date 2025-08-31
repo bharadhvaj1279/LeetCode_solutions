@@ -91,7 +91,7 @@ Constraints:
 s consists of English letters (lower-case and upper-case), digits (0-9), ' ', '+', '-', and '.'.
 
 ------------------------------------------------------------------------------------------------------------
-solution:
+solution in python:
 class Solution:
     def myAtoi(self, s: str) -> int:
         n = 0
@@ -127,3 +127,60 @@ class Solution:
         if n > maxi:
             return maxi
         return n
+
+
+--------------------------------------------------------------------------------
+solution in java:
+class Solution {
+    public int myAtoi(String s) {
+        int n = 0;
+        boolean m = false;
+        s = s.trim();     
+
+        for (int i = 0; i < s.length(); i++) {
+            char c = s.charAt(i);
+
+            if (c == '-') {
+                if (i > 0 && (Character.isDigit(s.charAt(i - 1)) || s.charAt(i - 1) == '+' || s.charAt(i - 1) == '-')) {
+                    break;
+                }
+                m = true;
+                continue;
+            }
+
+            if (c == '+') {
+                if (i > 0 && (Character.isDigit(s.charAt(i - 1)) || s.charAt(i - 1) == '-' || s.charAt(i - 1) == '+')) {
+                    break;
+                }
+                m = false;
+                continue;
+            }
+
+            if (Character.isDigit(c)) {
+                int digit = c - '0';
+
+                
+                if (n > (Integer.MAX_VALUE - digit) / 10) {
+                    return m ? Integer.MIN_VALUE : Integer.MAX_VALUE;
+                }
+
+                n = n * 10 + digit;
+            } else {
+                break;
+            }
+        }
+
+        if (m) {
+            n = -n;
+        }
+
+        int mini = (int) Math.pow(-2, 31);         
+        int maxi = (int) Math.pow(2, 31) ;       
+
+        if (n < mini) return mini;
+        if (n > maxi) return maxi;
+
+        return n;
+    }
+}
+
