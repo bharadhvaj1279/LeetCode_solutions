@@ -55,3 +55,21 @@ class Solution {
         return sum;
     }
 }
+------------------------------------------------------------------------------------------
+solution in python :
+
+class Solution:
+    def lengthOfLongestSubstring(self, s: str) -> int:
+        n = 0
+        ss = ""
+        l = []
+        for i in s:
+            if i in ss:
+                l.append(len(ss))
+              
+                ss = ss[ss.index(i) + 1:] + i
+            else:
+                ss += i
+        l.append(len(ss))
+        return max(l) if l else 0
+
