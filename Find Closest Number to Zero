@@ -41,10 +41,6 @@ another Python solution:
 
 class Solution:
     def findClosestNumber(self, nums: List[int]) -> int:
-        # for num in nums:
-        #     if abs(num) < abs(nums[0]) or (abs(num) == abs(nums[0]) and num > nums[0]):
-        #         nums[0] = num        
-        # return nums[0]
         n=[]
         for i in nums:
             if i<=0:
