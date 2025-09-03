@@ -24,7 +24,35 @@ The input is generated such that answer[i] is guaranteed to fit in a 32-bit inte
  
 
 Follow up: Can you solve the problem in O(1) extra space complexity? (The output array does not count as extra space for space complexity analysis.)
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 solution in python :
+
+class Solution:
+    def productExceptSelf(self, nums: List[int]) -> List[int]:
+        l = []
+        r = []
+        le = 1
+        res = []
+
+        
+        for i in range(len(nums)):
+            l.append(le)
+            le *= nums[i]
+
+        
+        le = 1    
+        for i in range(len(nums) - 1, -1, -1):
+            r.append(le)
+            le *= nums[i]
+  
+
+        
+        for i in range(len(nums)):
+            res.append(l[i] * r[len(nums)-1-i])
+        return res
+----------------------------------------------------------------------------------------------------------------------------------------------------------
+solution in java:
+
 
 
